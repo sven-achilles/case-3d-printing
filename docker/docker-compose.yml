@@ -19,7 +19,9 @@ services:
 
   case_fpm:
     container_name: case-fpm.local
-    image: php:7-fpm
+    build:  
+      context: ./
+      dockerfile: fpm/Dockerfile
     restart: always
     volumes: 
       - ./../www:/var/www/
