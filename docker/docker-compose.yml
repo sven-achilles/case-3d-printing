@@ -1,0 +1,51 @@
+---
+version: '3'
+
+services:
+  case_nginx:
+    container_name: case-nginx.local
+    image: nginx:latest
+    ports:
+      - "8585:80"
+    restart: always
+    volumes: 
+      - ./../www:/var/www/:ro
+      - ./nginx/config/nginx.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - server
+    depends_on:
+      - case_fpm
+      - case_mysql
+
+  case_fpm:
+    container_name: case-fpm.local
+    image: php:7-fpm
+    restart: always
+    volumes: 
+      - ./../www:/var/www/
+    expose:
+      - 9000
+    networks:
+      - database
+      - server
+    depends_on:
+      - case_mysql
+
+  case_mysql:
+    container_name: case-mysql.local
+    image: mysql:latest
+    ports:
+      - 3306
+    restart: always
+    networks:
+      - database
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}"
+      - "MYSQL_DATABASE=${DB_NAME}"
+      - "MYSQL_USER=${DB_USERNAME}"
+      - "MYSQL_PASSWORD=${DB_PASSWORD}"
+
+# NETWORKS ------------------------------------
+networks:
+  database:
+  server:
