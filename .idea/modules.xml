@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Ultimaker Case.iml" filepath="$PROJECT_DIR$/Ultimaker Case.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ultimaker/docker/docker.iml" filepath="$PROJECT_DIR$/../ultimaker/docker/docker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ultimaker/www/www.iml" filepath="$PROJECT_DIR$/../ultimaker/www/www.iml" />
+    </modules>
+  </component>
+</project>
