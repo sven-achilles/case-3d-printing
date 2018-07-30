@@ -8,6 +8,7 @@
 
     function hideOthersPrints() {
         showAllPrints();
+
         $list.find('tbody tr:not(.mine)').addClass('hide');
     }
 

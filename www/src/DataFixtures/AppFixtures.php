@@ -15,7 +15,7 @@ class AppFixtures extends Fixture
 
     private const USERS = [
         [
-            'email' => 'john@domain.com',
+            'email'    => 'john@domain.com',
             'fullname' => 'John Snow',
             'password' => 'Welkom01!'
         ]
@@ -54,26 +54,6 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    private function getDummyUsersData()
-    {
-        $users = [];
-
-        for( $i = 0; $i < 10; $i++ )
-        {
-            $users[] = [
-                'email' => $this->faker->email,
-                'fullname' => $this->faker->name,
-                'password' => 'Welkom01!'
-            ];
-        }
-
-        return array_merge( self::USERS, $users );
-    }
-
-    private function convertToReferenceName( $name ) {
-        return preg_replace('/\s+|\.+/', '-', strtolower( $name ) );
-    }
-
     private function loadPrintOrders(ObjectManager $manager, $users)
     {
         for( $i = 0; $i < 100; $i++ )
@@ -81,7 +61,7 @@ class AppFixtures extends Fixture
             $order = new PrintOrder();
 
             $order->setTitle( substr( $this->faker->sentence(rand(2, 3)), 0, -1) );
-            $order->setColor( substr( $this->faker->hexcolor, 1 ) );
+            $order->setColor( $this->faker->hexcolor, 1 );
             $order->setPolish( rand(0, 1) );
             $order->setWidth( rand(50, 500) );
             $order->setHeight( rand(50, 500) );
@@ -92,5 +72,25 @@ class AppFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    private function getDummyUsersData()
+    {
+        $users = [];
+
+        for( $i = 0; $i < 10; $i++ )
+        {
+            $users[] = [
+                'email'    => $this->faker->email,
+                'fullname' => $this->faker->name,
+                'password' => 'Welkom01!'
+            ];
+        }
+
+        return array_merge( self::USERS, $users );
+    }
+
+    private function convertToReferenceName( $name ) {
+        return preg_replace('/\s+|\.+/', '-', strtolower( $name ) );
     }
 }

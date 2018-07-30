@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}My 3D prints{% endblock %}
+{% block title %}3D prints overview{% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="/css/print-orders.css">
@@ -35,7 +35,7 @@
 
         <tbody>
         {% for order in orders %}
-        <tr {{ (order.user.getId() is same as(app.user.getId()) ? 'class="mine"' : '') }}>
+        <tr {{ (app.user and order.user.getId() is same as(app.user.getId()) ? 'class="mine"' : '') }}>
             <td scope="row">
                 {% if is_granted('delete', order) %}
                     <input type="checkbox">
@@ -44,7 +44,7 @@
             <td>{{ order.title }}</td>
             <td>{{ order.width }}mm x {{ order.height }}mm</td>
             <td>
-                <div class="color-box" style="background-color: #{{ order.color }};"></div>
+                <div class="color-box" style="background-color: {{ order.color }};"></div>
             </td>
             <td>Steel</td>
             <td>Gold</td>

@@ -20,7 +20,9 @@ class PrintOrderType extends AbstractType
     {
         $builder->add('title', TextType::class)
                 ->add('color', ColorType::class)
-                ->add('polish', CheckboxType::class)
+                ->add('polish', CheckboxType::class, [
+                    'required' => false,
+                ])
                 ->add('width', RangeType::class, [
                     'attr' => [
                         'min' => 50,

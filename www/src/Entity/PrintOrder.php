@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PrintOrderRepository")
@@ -18,11 +19,15 @@ class PrintOrder
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=5, max=254)
      */
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=6)
+     * @ORM\Column(type="string", length=7)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=7, max=7)
      */
     private $color;
 
@@ -37,11 +42,13 @@ class PrintOrder
 
     /**
      * @ORM\Column(type="decimal")
+     * @Assert\NotBlank()
      */
     private $width;
 
     /**
      * @ORM\Column(type="decimal")
+     * @Assert\NotBlank()
      */
     private $height;
 
@@ -56,13 +63,16 @@ class PrintOrder
      */
     private $user;
 
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -70,7 +80,7 @@ class PrintOrder
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      */
     public function setTitle($title): void
     {
@@ -78,7 +88,7 @@ class PrintOrder
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getColor()
     {
@@ -86,7 +96,7 @@ class PrintOrder
     }
 
     /**
-     * @param mixed $color
+     * @param string $color
      */
     public function setColor($color): void
     {
@@ -94,7 +104,7 @@ class PrintOrder
     }
 
     /**
-     * @return mixed
+     * @return boolean
      */
     public function getPolish()
     {
@@ -102,7 +112,7 @@ class PrintOrder
     }
 
     /**
-     * @param mixed $polish
+     * @param boolean $polish
      */
     public function setPolish($polish): void
     {
@@ -110,7 +120,7 @@ class PrintOrder
     }
 
     /**
-     * @return mixed
+     * @return double
      */
     public function getWidth()
     {
@@ -118,7 +128,7 @@ class PrintOrder
     }
 
     /**
-     * @param mixed $width
+     * @param double $width
      */
     public function setWidth($width): void
     {
@@ -126,7 +136,7 @@ class PrintOrder
     }
 
     /**
-     * @return mixed
+     * @return double
      */
     public function getHeight()
     {
@@ -134,7 +144,7 @@ class PrintOrder
     }
 
     /**
-     * @param mixed $height
+     * @param double $height
      */
     public function setHeight($height): void
     {
@@ -142,7 +152,7 @@ class PrintOrder
     }
 
     /**
-     * @return mixed
+     * @return \DateTime
      */
     public function getCreateDate()
     {
@@ -150,7 +160,7 @@ class PrintOrder
     }
 
     /**
-     * @param mixed $createDate
+     * @param \DateTime $createDate
      */
     public function setCreateDate($createDate): void
     {
@@ -158,7 +168,7 @@ class PrintOrder
     }
 
     /**
-     * @return mixed
+     * @return User
      */
     public function getUser()
     {
@@ -166,7 +176,7 @@ class PrintOrder
     }
 
     /**
-     * @param mixed $user
+     * @param User $user
      */
     public function setUser($user): void
     {
