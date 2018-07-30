@@ -20,6 +20,7 @@
             <th scope="col">Finish</th>
             <th scope="col">Polish</th>
             <th scope="col">Date</th>
+            <th scope="col"></th>
         </tr>
         </thead>
 
@@ -27,7 +28,7 @@
         {% for order in orders %}
         <tr>
             <td scope="row">
-                {% if order.user is same as(app.user) %}
+                {% if is_granted('delete', order) %}
                     <input type="checkbox">
                 {% endif %}
             </td>
@@ -40,6 +41,15 @@
             <td>Gold</td>
             <td>{{ order.polish ? 'YES' : 'NO' }}</td>
             <td>Aug 12, 2018</td>
+            <td>
+                {% if is_granted('delete', order) %}
+                    <a href="#">Delete</a>
+                {% endif %}
+
+                {% if is_granted('edit', order) %}
+                    <a href="#">Edit</a>
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
         </tbody>
