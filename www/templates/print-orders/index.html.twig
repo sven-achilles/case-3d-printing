@@ -9,9 +9,11 @@
 {% block body %}
     <h1>My 3D prints</h1>
 
-    <button type="button" class="btn btn-primary btn-sm">Upload print!</button>
+    <div class="form-group">
+        <button type="button" class="btn btn-primary btn-sm">Upload new 3D print!</button>
+    </div>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="print-orders">
         <thead>
         <tr>
             <th scope="col"></th>
