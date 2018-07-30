@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserPrintsController extends AbstractController
 {
     /**
-     * @Route("/", name="user-prints-index")
+     * @Route("/", name="user_prints_index")
      */
     public function index()
     {

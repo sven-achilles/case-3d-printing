@@ -35,7 +35,7 @@ services:
 
   case_mysql:
     container_name: case-mysql.local
-    image: mysql:latest
+    image: mysql:5.7.22
     ports:
       - 3306
     restart: always

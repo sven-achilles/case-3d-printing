@@ -1,7 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User prints{% endblock %}
+{% block title %}My 3D prints{% endblock %}
 
 {% block body %}
-    Weeeh!
+    <h1>My 3D prints</h1>
+
+    <button type="button" class="btn btn-primary btn-sm">Upload print!</button>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Title</th>
+            <th scope="col">Dimensions</th>
+            <th scope="col">Color</th>
+            <th scope="col">Material</th>
+            <th scope="col">Finish</th>
+            <th scope="col">Polish</th>
+            <th scope="col">Date</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for i in 0..20 %}
+        <tr>
+            <td scope="row">
+                <input type="checkbox">
+            </td>
+            <td>Peppa Pig Cookie cutter</td>
+            <td>100mm x 100mm</td>
+            <td>Blue</td>
+            <td>Steel</td>
+            <td>Gold</td>
+            <td>Yes</td>
+            <td>Aug 12, 2018</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="del">Delete selected prints</a>
 {% endblock %}
