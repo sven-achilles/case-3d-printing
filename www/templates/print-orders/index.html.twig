@@ -6,8 +6,17 @@
     <link rel="stylesheet" href="/css/print-orders.css">
 {% endblock %}
 
+{% block javascripts %}
+    <script src="/js/print-orders.js"></script>
+{% endblock %}
+
 {% block body %}
-    <h2>My 3D prints</h2>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="show-mine-check">
+        <label class="form-check-label" for="show-mine-check">
+            Show only my 3D prints
+        </label>
+    </div>
 
     <table class="table table-bordered" id="print-orders">
         <thead>
@@ -26,7 +35,7 @@
 
         <tbody>
         {% for order in orders %}
-        <tr>
+        <tr {{ (order.user.getId() is same as(app.user.getId()) ? 'class="mine"' : '') }}>
             <td scope="row">
                 {% if is_granted('delete', order) %}
                     <input type="checkbox">

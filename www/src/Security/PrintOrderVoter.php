@@ -11,6 +11,11 @@ class PrintOrderVoter extends Voter
     const EDIT   = 'edit';
     const DELETE = 'delete';
 
+    /**
+     * @param string $attribute
+     * @param mixed $subject
+     * @return bool
+     */
     protected function supports($attribute, $subject)
     {
         if( !in_array($attribute, [ self::EDIT, self::DELETE ]) )
@@ -26,6 +31,12 @@ class PrintOrderVoter extends Voter
         return true;
     }
 
+    /**
+     * @param string $attribute
+     * @param mixed $subject
+     * @param TokenInterface $token
+     * @return bool
+     */
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
     {
         $authenticatedUser = $token->getUser();
@@ -40,5 +51,4 @@ class PrintOrderVoter extends Voter
 
         return $printOrder->getUser()->getId() === $authenticatedUser->getId();
     }
-
 }

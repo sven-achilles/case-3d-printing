@@ -11,3 +11,11 @@
 
     cursor: pointer;
 }
+
+#print-orders tbody tr.mine {
+    background-color: #e5f3f7;
+}
+
+#print-orders tbody tr.hide {
+    display: none;
+}
