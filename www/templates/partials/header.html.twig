@@ -1,0 +1,25 @@
+<header id="page-header">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="/">My 3D printer</a>
+
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            {% if is_granted('ROLE_USER') %}
+                <li class="nav-item">
+                    <a href="{{ path('print_order_create') }}" class="btn btn-sm nav-link" id="new-print-btn">Upload new 3D print!</a>
+                </li>
+
+                <li class="nav-item" id="user-info">
+                    <a class="nav-link"><small>you:</small> {{ app.user.fullName }}</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ logout_path() }}">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('security_logout') }}">Sign in</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

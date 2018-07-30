@@ -1,0 +1,18 @@
+#page-header {
+    margin-bottom: 25px;
+    
+    background-color: #1289A7;
+}
+
+#page-header,
+#page-header a {
+    color: #FFF;
+}
+
+#page-header #new-print-btn {
+    background-color: #0b5e73;
+}
+
+#page-header #user-info a {
+    color: #b0d8e2;
+}

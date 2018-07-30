@@ -18,7 +18,7 @@ class PrintOrderController extends AbstractController
     }
 
     /**
-     * @Route("/", name="user_prints_index")
+     * @Route("/", name="print_order_index")
      */
     public function index()
     {
@@ -27,5 +27,13 @@ class PrintOrderController extends AbstractController
         return $this->render('print-orders/index.html.twig', [
             'orders' => $orders
         ]);
+    }
+
+    /**
+     * @Route("/create", name="print_order_create")
+     */
+    public function create()
+    {
+        return 'todo';
     }
 }
