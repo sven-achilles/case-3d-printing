@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/prints")
  */
-class UserPrintsController extends AbstractController
+class PrintOrderController extends AbstractController
 {
     private $orderRepository;
 
@@ -24,7 +24,7 @@ class UserPrintsController extends AbstractController
     {
         $orders = $this->orderRepository->findAll();
 
-        return $this->render('user-prints/index.html.twig', [
+        return $this->render('print-orders/index.html.twig', [
             'orders' => $orders
         ]);
     }
