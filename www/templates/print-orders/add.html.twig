@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Upload new 3D design{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/form-range.js"></script>
+{% endblock %}
+
+{% block body %}
+    <h2 id="page-title">Upload new 3D design</h2>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+{% endblock %}

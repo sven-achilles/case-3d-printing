@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\PrintOrder;
+use App\Form\PrintOrderType;
 use App\Repository\PrintOrderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,6 +36,12 @@ class PrintOrderController extends AbstractController
      */
     public function create()
     {
-        return 'todo';
+        $print = new PrintOrder();
+
+        $form = $this->createForm( PrintOrderType::class, $print );
+
+        return $this->render( 'print-orders/add.html.twig', [
+            'form' => $form->createView()
+        ] );
     }
 }
