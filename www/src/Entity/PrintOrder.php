@@ -45,6 +45,17 @@ class PrintOrder
      */
     private $height;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createDate;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="prints")
+     * @ORM\JoinColumn()
+     */
+    private $user;
+
     public function getId()
     {
         return $this->id;
@@ -128,5 +139,37 @@ class PrintOrder
     public function setHeight($height): void
     {
         $this->height = $height;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+
+    /**
+     * @param mixed $createDate
+     */
+    public function setCreateDate($createDate): void
+    {
+        $this->createDate = $createDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user): void
+    {
+        $this->user = $user;
     }
 }

@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="334ccd17-9654-49e9-b0c3-b6db4a3a98b3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/www/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/www/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/src/Controller/UserPrintsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/Controller/UserPrintsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/src/DataFixtures/AppFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/DataFixtures/AppFixtures.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/src/Entity/PrintOrder.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/Entity/PrintOrder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/www/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/templates/user-prints/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/www/templates/user-prints/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/www.iml" beforeDir="false" afterPath="$PROJECT_DIR$/www/www.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/www/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/www/src/Entity/User.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,20 +22,8 @@
       <file leaf-file-name="PrintOrder.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/src/Entity/PrintOrder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="121" column="29" selection-start-line="121" selection-start-column="29" selection-end-line="121" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppFixtures.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/www/src/DataFixtures/AppFixtures.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="372">
-              <caret line="47" column="79" selection-start-line="47" selection-start-column="79" selection-end-line="47" selection-end-column="79" />
-              <folding>
-                <element signature="e#35#61#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="525">
+              <caret line="173" column="5" selection-start-line="173" selection-start-column="5" selection-end-line="173" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -50,44 +31,32 @@
       <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/src/Entity/User.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="23" column="57" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="57" />
+            <state relative-caret-position="394">
+              <caret line="140" selection-start-line="140" selection-end-line="140" />
               <folding>
-                <element signature="e#30#62#0#PHP" expanded="true" />
+                <element signature="e#30#78#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserPrintsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/src/Controller/UserPrintsController.php">
+      <file leaf-file-name="Version20180730140805.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/src/Migrations/Version20180730140805.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
-              <folding>
-                <element signature="e#33#73#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="170">
+              <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/templates/user-prints/index.html.twig">
+      <file leaf-file-name="AppFixtures.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/src/DataFixtures/AppFixtures.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+            <state relative-caret-position="233">
+              <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
               <folding>
-                <element signature="e#935#980#0#HTML" expanded="true" />
+                <element signature="e#35#61#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="print-orders.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/www/public/css/print-orders.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -121,12 +90,12 @@
         <option value="$PROJECT_DIR$/www/templates/register/register.html.twig" />
         <option value="$PROJECT_DIR$/www/src/Form/UserType.php" />
         <option value="$PROJECT_DIR$/www/config/packages/twig.yaml" />
-        <option value="$PROJECT_DIR$/www/src/Entity/User.php" />
         <option value="$PROJECT_DIR$/www/src/Controller/RegisterController.php" />
         <option value="$PROJECT_DIR$/www/src/Controller/UserPrintsController.php" />
-        <option value="$PROJECT_DIR$/www/src/Entity/PrintOrder.php" />
         <option value="$PROJECT_DIR$/www/public/css/print-orders.css" />
         <option value="$PROJECT_DIR$/www/templates/user-prints/index.html.twig" />
+        <option value="$PROJECT_DIR$/www/src/Entity/PrintOrder.php" />
+        <option value="$PROJECT_DIR$/www/src/Entity/User.php" />
         <option value="$PROJECT_DIR$/www/src/DataFixtures/AppFixtures.php" />
       </list>
     </option>
@@ -570,27 +539,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="23" column="57" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="57" />
-          <folding>
-            <element signature="e#30#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/Entity/PrintOrder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="121" column="29" selection-start-line="121" selection-start-column="29" selection-end-line="121" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/templates/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="10" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/Controller/UserPrintsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+          <folding>
+            <element signature="e#33#73#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -611,20 +573,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/Controller/UserPrintsController.php">
+    <entry file="file://$PROJECT_DIR$/www/src/Migrations/Version20180730140805.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="1" selection-start-line="30" selection-start-column="1" selection-end-line="30" selection-end-column="1" />
+        <state relative-caret-position="170">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/Entity/PrintOrder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="173" column="5" selection-start-line="173" selection-start-column="5" selection-end-line="173" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="140" selection-start-line="140" selection-end-line="140" />
           <folding>
-            <element signature="e#33#73#0#PHP" expanded="true" />
+            <element signature="e#30#78#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/src/DataFixtures/AppFixtures.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="47" column="79" selection-start-line="47" selection-start-column="79" selection-end-line="47" selection-end-column="79" />
+        <state relative-caret-position="233">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
           <folding>
             <element signature="e#35#61#0#PHP" expanded="true" />
           </folding>

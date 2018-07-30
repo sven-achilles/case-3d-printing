@@ -35,6 +35,8 @@ class AppFixtures extends Fixture
             $this->passwordEncoder->encodePassword( $user, 'John01!' )
         );
 
+        $this->addReference('user-john', $user);
+
         $manager->persist( $user );
         $manager->flush();
     }
@@ -50,6 +52,8 @@ class AppFixtures extends Fixture
             $order->setPolish( rand(0, 1) );
             $order->setWidth( rand(50, 500) );
             $order->setHeight( rand(50, 500) );
+            $order->setCreateDate( $this->faker->dateTimeBetween('-2 years') );
+            $order->setUser( $this->getReference('user-john') );
 
             $manager->persist($order);
         }

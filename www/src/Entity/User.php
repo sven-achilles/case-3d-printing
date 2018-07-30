@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -45,6 +46,16 @@ class User implements UserInterface, \Serializable
      * @Assert\Length(min=5, max=50)
      */
     private $fullName;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PrintOrder", mappedBy="user")
+     */
+    private $prints;
+
+    public function __construct()
+    {
+        $this->prints = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -121,6 +132,11 @@ class User implements UserInterface, \Serializable
     public function setPlainPassword($plainPassword): void
     {
         $this->plainPassword = $plainPassword;
+    }
+
+    public function getPrints()
+    {
+        return $this->prints;
     }
 
     public function eraseCredentials()
