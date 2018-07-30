@@ -57,13 +57,16 @@ class User implements UserInterface, \Serializable
         $this->prints = new ArrayCollection();
     }
 
+    /**
+     * @return int
+     */
     public function getId()
     {
         return $this->id;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEmail()
     {
@@ -71,15 +74,15 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * @param mixed $email
+     * @param string $email
      */
-    public function setEmail($email): void
+    public function setEmail( $email ): void
     {
         $this->email = $email;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getFullName()
     {
@@ -87,21 +90,24 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * @param mixed $fullName
+     * @param string $fullName
      */
-    public function setFullName($fullName): void
+    public function setFullName( $fullName ): void
     {
         $this->fullName = $fullName;
     }
 
     /**
-     * @param mixed $password
+     * @param string $password
      */
-    public function setPassword($password): void
+    public function setPassword( $password ): void
     {
         $this->password = $password;
     }
 
+    /**
+     * @return array
+     */
     public function getRoles()
     {
         return [
@@ -109,41 +115,57 @@ class User implements UserInterface, \Serializable
         ];
     }
 
+    /**
+     * @return string
+     */
     public function getPassword()
     {
         return $this->password;
     }
 
+    /**
+     * @return null|string
+     */
     public function getSalt()
     {
         return null;
     }
 
+    /**
+     * @return string
+     */
     public function getUsername()
     {
         return $this->email;
     }
 
+    /**
+     * @return string
+     */
     public function getPlainPassword()
     {
         return $this->plainPassword;
     }
 
-    public function setPlainPassword($plainPassword): void
+    /**
+     * @param string $plainPassword
+     */
+    public function setPlainPassword( $plainPassword ): void
     {
         $this->plainPassword = $plainPassword;
     }
 
+    /**
+     * @return ArrayCollection
+     */
     public function getPrints()
     {
         return $this->prints;
     }
 
-    public function eraseCredentials()
-    {
-        // TODO: Implement eraseCredentials() method.
-    }
-
+    /**
+     * @return string
+     */
     public function serialize()
     {
         return serialize([
@@ -153,8 +175,16 @@ class User implements UserInterface, \Serializable
         ]);
     }
 
+    /**
+     * @param string $serialized
+     */
     public function unserialize($serialized)
     {
         list($this->id, $this->email, $this->password) = unserialize( $serialized );
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }

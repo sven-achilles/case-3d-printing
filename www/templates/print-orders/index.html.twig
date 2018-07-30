@@ -27,7 +27,9 @@
         {% for order in orders %}
         <tr>
             <td scope="row">
-                <input type="checkbox">
+                {% if order.user is same as(app.user) %}
+                    <input type="checkbox">
+                {% endif %}
             </td>
             <td>{{ order.title }}</td>
             <td>{{ order.width }}mm x {{ order.height }}mm</td>
