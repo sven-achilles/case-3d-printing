@@ -6,13 +6,16 @@ use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Faker\Factory as Faker;
 
 class AppFixtures extends Fixture
 {
+    private $faker;
     private $passwordEncoder;
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
+        $this->faker = Faker::create();
         $this->passwordEncoder = $passwordEncoder;
     }
 
@@ -42,7 +45,8 @@ class AppFixtures extends Fixture
         {
             $order = new PrintOrder();
 
-            $order->setColor('000000');
+            $order->setTitle( substr( $this->faker->sentence(rand(2, 3)), 0, -1) );
+            $order->setColor( substr( $this->faker->hexcolor, 1 ) );
             $order->setPolish( rand(0, 1) );
             $order->setWidth( rand(50, 500) );
             $order->setHeight( rand(50, 500) );

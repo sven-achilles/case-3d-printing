@@ -17,6 +17,11 @@ class PrintOrder
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=200)
+     */
+    private $title;
+
+    /**
      * @ORM\Column(type="string", length=6)
      */
     private $color;
@@ -43,6 +48,22 @@ class PrintOrder
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title): void
+    {
+        $this->title = $title;
     }
 
     /**

@@ -2,6 +2,10 @@
 
 {% block title %}My 3D prints{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="/css/print-orders.css">
+{% endblock %}
+
 {% block body %}
     <h1>My 3D prints</h1>
 
@@ -22,17 +26,19 @@
         </thead>
 
         <tbody>
-        {% for i in 0..20 %}
+        {% for order in orders %}
         <tr>
             <td scope="row">
                 <input type="checkbox">
             </td>
-            <td>Peppa Pig Cookie cutter</td>
-            <td>100mm x 100mm</td>
-            <td>Blue</td>
+            <td>{{ order.title }}</td>
+            <td>{{ order.width }}mm x {{ order.height }}mm</td>
+            <td>
+                <div class="color-box" style="background-color: #{{ order.color }};"></div>
+            </td>
             <td>Steel</td>
             <td>Gold</td>
-            <td>Yes</td>
+            <td>{{ order.polish ? 'YES' : 'NO' }}</td>
             <td>Aug 12, 2018</td>
         </tr>
         {% endfor %}
