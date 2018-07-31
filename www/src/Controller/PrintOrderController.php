@@ -149,6 +149,22 @@ class PrintOrderController extends AbstractController
         return $this->redirectToRoute('print_order_index' );
     }
 
+    /**
+     * @Route("/show/{id}", name="print_order_show")
+     *
+     * @param PrintOrder $print
+     * @return mixed
+     */
+    public function show( PrintOrder $print )
+    {
+        return $this->renderView( 'print-orders/show.html.twig', [
+            'print' => $print
+        ] );
+    }
+
+    /**
+     * @param string $file_name
+     */
     private function deletePrint3DFile( $file_name )
     {
         @unlink( $this->getParameter('designs_directory') . '/' . $file_name );

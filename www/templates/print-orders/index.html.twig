@@ -8,6 +8,7 @@
 
 {% block javascripts %}
     <script src="/js/print-orders.js"></script>
+    <script src="/js/print-design-table.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -43,7 +44,7 @@
 
         <tbody>
         {% for order in orders %}
-            <tr {{ (app.user and order.user.getId() is same as(app.user.getId()) ? 'class="mine"' : '') }}>
+            <tr {{ (app.user and order.user.getId() is same as(app.user.getId()) ? 'class="mine"' : '') }} data-show-url="{{ path('print_order_show', { id: order.id }) }}">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <td scope="row">
                         {% if is_granted('delete', order) %}

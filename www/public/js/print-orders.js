@@ -12,7 +12,7 @@
         $list.find('tbody tr:not(.mine)').addClass('hide');
     }
 
-    function onChange() {
+    function onFilterChange() {
         if( $(this).is(':checked') ) {
             hideOthersPrints();
         } else {
@@ -23,5 +23,5 @@
     $list       = $('#print-orders');
     $filter_btn = $('#show-mine-check');
 
-    $filter_btn.on('change', onChange );
+    $filter_btn.on('change', onFilterChange );
 })(jQuery);
