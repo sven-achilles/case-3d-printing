@@ -97,7 +97,8 @@ class PrintOrderController extends AbstractController
         $this->denyAccessUnlessGranted( 'edit', $print );
 
         $old_design_filename = $print->getDesign();
-        // convert design filename into File object to populate init value
+
+        // convert design filename into File object to populate init value of Form
         $print->setDesign( new File( $this->getParameter('designs_directory') . '/' . $old_design_filename ) );
 
         $form = $this->createForm( PrintOrderType::class, $print );
@@ -107,6 +108,8 @@ class PrintOrderController extends AbstractController
         {
             if( !is_null( $print->getDesign() ) )
             {
+                $this->deletePrint3DFile( $old_design_filename );
+
                 $print->setDesign( $designUploader->upload( $print->getDesign(), 'stl' ) );
             }
             else
@@ -137,11 +140,17 @@ class PrintOrderController extends AbstractController
     {
         $this->denyAccessUnlessGranted( 'delete', $print );
 
+        $this->deletePrint3DFile( $print->getDesign() );
         $this->entityManager->remove( $print );
         $this->entityManager->flush();
 
         $this->addFlash('notice', 'Print was successfully deleted');
 
-        return $this->redirectToRoute('micro_post_index' );
+        return $this->redirectToRoute('print_order_index' );
+    }
+
+    private function deletePrint3DFile( $file_name )
+    {
+        @unlink( $this->getParameter('designs_directory') . '/' . $file_name );
     }
 }
