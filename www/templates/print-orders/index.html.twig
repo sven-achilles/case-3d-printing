@@ -11,17 +11,22 @@
 {% endblock %}
 
 {% block body %}
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="show-mine-check">
-        <label class="form-check-label" for="show-mine-check">
-            Show only my 3D prints
-        </label>
-    </div>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="show-mine-check">
+            <label class="form-check-label" for="show-mine-check">
+                Show only my 3D prints
+            </label>
+        </div>
+    {% endif %}
 
     <table class="table table-bordered" id="print-orders">
         <thead>
         <tr>
-            <th scope="col"></th>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <th scope="col"></th>
+            {% endif %}
+
             <th scope="col">Title</th>
             <th scope="col">Dimensions</th>
             <th scope="col">Color</th>
@@ -29,37 +34,46 @@
             <th scope="col">Finish</th>
             <th scope="col">Polish</th>
             <th scope="col">Date</th>
-            <th scope="col"></th>
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <th scope="col"></th>
+            {% endif %}
         </tr>
         </thead>
 
         <tbody>
         {% for order in orders %}
-        <tr {{ (app.user and order.user.getId() is same as(app.user.getId()) ? 'class="mine"' : '') }}>
-            <td scope="row">
-                {% if is_granted('delete', order) %}
-                    <input type="checkbox">
-                {% endif %}
-            </td>
-            <td>{{ order.title }}</td>
-            <td>{{ order.width }}mm x {{ order.height }}mm</td>
-            <td>
-                <div class="color-box" style="background-color: {{ order.color }};"></div>
-            </td>
-            <td>Steel</td>
-            <td>Gold</td>
-            <td>{{ order.polish ? 'YES' : 'NO' }}</td>
-            <td>{{ order.createDate | date('d-m-Y') }}</td>
-            <td>
-                {% if is_granted('delete', order) %}
-                    <a href="{{ path('print_order_delete', { id: order.id }) }}" title="Delete print design">Delete</a>
+            <tr {{ (app.user and order.user.getId() is same as(app.user.getId()) ? 'class="mine"' : '') }}>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <td scope="row">
+                        {% if is_granted('delete', order) %}
+                            <input type="checkbox">
+                        {% endif %}
+                    </td>
                 {% endif %}
 
-                {% if is_granted('edit', order) %}
-                    <a href="{{ path('print_order_edit', { id: order.id }) }}" title="Edit print design">Edit</a>
+                <td>{{ order.title }}</td>
+                <td>{{ order.width }}mm x {{ order.height }}mm</td>
+                <td>
+                    <div class="color-box" style="background-color: {{ order.color }};"></div>
+                </td>
+                <td>Steel</td>
+                <td>Gold</td>
+                <td>{{ order.polish ? 'YES' : 'NO' }}</td>
+                <td>{{ order.createDate | date('d-m-Y') }}</td>
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <td>
+                        {% if is_granted('delete', order) %}
+                            <a href="{{ path('print_order_delete', { id: order.id }) }}" title="Delete print design">Delete</a>
+                        {% endif %}
+
+                        {% if is_granted('edit', order) %}
+                            <a href="{{ path('print_order_edit', { id: order.id }) }}" title="Edit print design">Edit</a>
+                        {% endif %}
+                    </td>
                 {% endif %}
-            </td>
-        </tr>
+            </tr>
         {% endfor %}
         </tbody>
     </table>
