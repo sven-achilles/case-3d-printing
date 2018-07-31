@@ -44,7 +44,7 @@ class PrintOrderController extends AbstractController
      */
     public function index()
     {
-        $orders = $this->orderRepository->findAll();
+        $orders = $this->orderRepository->findBy( [], [ 'createDate' => 'DESC' ] );
 
         return $this->render('print-orders/index.html.twig', [
             'orders' => $orders
