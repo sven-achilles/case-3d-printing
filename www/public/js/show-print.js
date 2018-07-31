@@ -1,10 +1,25 @@
 (function($) {
-    window.onload = function() {
-        thingiurlbase = '/vendor/thingiview/javascripts';
-        thingiview    = new Thingiview('model-viewer');
+    var thingiview;
+    var color;
+    var obj_path;
 
-        thingiview.setObjectColor('#C0D8F0');
+    function init() {
+        thingiurlbase = '/vendor/thingiview/javascripts'; // needs to be global
+        thingiview    = new Thingiview('model-viewer');
+        color         = $('#print-design').attr('data-color');
+        obj_path      = $('#print-design').attr('data-obj-path');
+    }
+
+    function loadModel() {
+        console.log( color, obj_path );
+        thingiview.setObjectColor( color );
+
         thingiview.initScene();
-        thingiview.loadSTL('/uploads/designs/c53bc390483c0928ccbbc5c4208eaaf0.stl');
+        thingiview.loadSTL( obj_path );
+    }
+
+    window.onload = function() {
+        init();
+        loadModel();
     };
 })(jQuery);

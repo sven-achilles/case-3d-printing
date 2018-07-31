@@ -15,9 +15,9 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div id="print-design" class="container" data-color="{{ print.color }}" data-obj-path="{{ asset('uploads/designs/' ~ print.design) }}">
         <div class="row">
-             <h2>Design: {{ print.title }}</h2>
+             <h2 id="page-title">Design: {{ print.title }}</h2>
         </div>
 
         <div class="row">
@@ -33,16 +33,7 @@
                             <b>Color</b>
                         </td>
                         <td>
-                            {{ print.color }}
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <b>Polish</b>
-                        </td>
-                        <td>
-                            {{ print.polish ? 'YES' : 'NO' }}
+                            {{ print.color | upper }}
                         </td>
                     </tr>
 
@@ -66,14 +57,42 @@
 
                     <tr>
                         <td>
+                            <b>Polish</b>
+                        </td>
+                        <td>
+                            {{ print.polish ? 'YES' : 'NO' }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
                             <b>Author</b>
                         </td>
                         <td>
                             {{ print.user.fullName }}
                         </td>
                     </tr>
+
+                    <tr>
+                        <td>
+                            <b>Created at</b>
+                        </td>
+                        <td>
+                            {{ print.createDate | date('d-m-Y h:i:s') }}
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
+
+                <div>
+                    {% if is_granted('edit', print) %}
+                        <a href="{{ path('print_order_edit', { id: print.id }) }}" class="btn btn-secondary" title="Edit 3D print">Edit</a>
+                    {% endif %}
+
+                    {% if is_granted('delete', print) %}
+                        <a href="{{ path('print_order_delete', { id: print.id }) }}" class="btn btn-danger" title="Delete 3D print">Delete</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

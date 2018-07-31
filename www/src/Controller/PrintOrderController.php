@@ -75,9 +75,9 @@ class PrintOrderController extends AbstractController
             $this->entityManager->persist( $print );
             $this->entityManager->flush();
 
-            $this->addFlash('success', '3D Print was successfully created!');
+            $this->addFlash('success', '3D Design was successfully created!');
 
-            return $this->redirectToRoute( 'print_order_index' );
+            return $this->redirectToRoute( 'print_order_show', [ 'id' => $print->getId() ] );
         }
 
         return $this->render( 'print-orders/add.html.twig', [
@@ -120,9 +120,9 @@ class PrintOrderController extends AbstractController
             $this->entityManager->persist( $print );
             $this->entityManager->flush();
 
-            $this->addFlash('success', 'Print was successfully changed');
+            $this->addFlash('success', '3D Design was successfully saved');
 
-            return $this->redirectToRoute( 'print_order_index' );
+            return $this->redirectToRoute( 'print_order_show', [ 'id' => $print->getId() ] );
         }
 
         return $this->render( 'print-orders/edit.html.twig', [
@@ -144,7 +144,7 @@ class PrintOrderController extends AbstractController
         $this->entityManager->remove( $print );
         $this->entityManager->flush();
 
-        $this->addFlash('notice', 'Print was successfully deleted');
+        $this->addFlash('success', '3D Design was successfully deleted');
 
         return $this->redirectToRoute('print_order_index' );
     }

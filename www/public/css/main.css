@@ -1,3 +1,13 @@
 #page-title {
     margin-bottom: 25px;
 }
+
+a.btn,
+a:not([href]):not([tabindex]) {
+    color: #FFF;
+}
+
+a.btn:hover,
+a:not([href]):not([tabindex]):hover {
+    color: #F5F5F5;
+}
