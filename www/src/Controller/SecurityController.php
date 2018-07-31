@@ -10,9 +10,17 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="security_login")
+     *
+     * @param AuthenticationUtils $authenticationUtils
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function login( AuthenticationUtils $authenticationUtils )
     {
+        // TODO: this should be possible with route configuration..
+        if( !is_null( $this->getUser() ) ) {
+            return $this->redirectToRoute('print_order_index');
+        }
+
         return $this->render('security/login.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
             'error'         => $authenticationUtils->getLastAuthenticationError()

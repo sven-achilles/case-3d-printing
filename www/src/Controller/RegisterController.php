@@ -11,8 +11,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RegisterController extends AbstractController
 {
+    /**
+     * @var EntityManagerInterface
+     */
     private $entityManager;
 
+    /**
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct( EntityManagerInterface $entityManager )
     {
         $this->entityManager = $entityManager;
@@ -20,9 +26,18 @@ class RegisterController extends AbstractController
 
     /**
      * @Route("/register", name="user_register")
+     *
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function register( Request $request, UserPasswordEncoderInterface $passwordEncoder )
     {
+        // TODO: this should be possible with route configuration..
+        if( !is_null( $this->getUser() ) ) {
+            return $this->redirectToRoute('print_order_index');
+        }
+
         $user = new User();
         $form = $this->createForm( UserType::class, $user );
 
