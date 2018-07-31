@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ print.title }} | 3D design{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/css/show-print.css">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/vendor/thingiview/javascripts/Three.js"></script>
+    <script src="/vendor/thingiview/javascripts/plane.js"></script>
+    <script src="/vendor/thingiview/javascripts/thingiview.js"></script>
+
+    <script src="/js/show-print.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+             <h2>Design: {{ print.title }}</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div id="model-viewer"></div>
+            </div>
+            <div class="col">
+                <h4>Details:</h4>
+                <table class="table">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <b>Color</b>
+                        </td>
+                        <td>
+                            {{ print.color }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <b>Polish</b>
+                        </td>
+                        <td>
+                            {{ print.polish ? 'YES' : 'NO' }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <b>Width</b>
+                        </td>
+                        <td>
+                            {{ print.width }}mm
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <b>Height</b>
+                        </td>
+                        <td>
+                            {{ print.height }}mm
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <b>Author</b>
+                        </td>
+                        <td>
+                            {{ print.user.fullName }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

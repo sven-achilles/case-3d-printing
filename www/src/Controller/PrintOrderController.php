@@ -157,7 +157,7 @@ class PrintOrderController extends AbstractController
      */
     public function show( PrintOrder $print )
     {
-        return $this->renderView( 'print-orders/show.html.twig', [
+        return $this->render( 'print-orders/show.html.twig', [
             'print' => $print
         ] );
     }
