@@ -6,6 +6,7 @@ use App\Entity\PrintOrder;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,6 +23,9 @@ class PrintOrderType extends AbstractType
                 ->add('color', ColorType::class)
                 ->add('polish', CheckboxType::class, [
                     'required' => false,
+                ])
+                ->add('design', FileType::class, [
+                    'label' => '3D Design (STL file, 50MB max)'
                 ])
                 ->add('width', RangeType::class, [
                     'attr' => [

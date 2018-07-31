@@ -6,6 +6,7 @@ use App\Form\PrintOrderType;
 use App\Repository\PrintOrderRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -70,8 +71,22 @@ class PrintOrderController extends AbstractController
             $print->setCreateDate( new \DateTime() );
             $print->setUser( $this->getUser() );
 
+            $design   = $print->getDesign();
+            $fileName = $this->generateUniqueFileName() . '.stl';
+
+            // TODO: STL file validation
+
+            $design->move(
+                $this->getParameter('designs_directory'),
+                $fileName
+            );
+
+            $print->setDesign( $fileName );
+
             $this->entityManager->persist( $print );
             $this->entityManager->flush();
+
+            $this->addFlash('success', '3D Print was successfully created!');
 
             return $this->redirectToRoute( 'print_order_index' );
         }
@@ -91,6 +106,9 @@ class PrintOrderController extends AbstractController
     public function edit( PrintOrder $print, Request $request )
     {
         $this->denyAccessUnlessGranted( 'edit', $print );
+
+        // convert design filename into File object for Form object
+        $print->setDesign( new File( $this->getParameter('designs_directory') . '/' . $print->getDesign() ) );
 
         $form = $this->createForm( PrintOrderType::class, $print );
         $form->handleRequest( $request );
@@ -126,5 +144,13 @@ class PrintOrderController extends AbstractController
         $this->addFlash('notice', 'Print was successfully deleted');
 
         return $this->redirectToRoute('micro_post_index' );
+    }
+
+    /**
+     * @return string
+     */
+    private function generateUniqueFileName()
+    {
+        return md5( uniqid() );
     }
 }

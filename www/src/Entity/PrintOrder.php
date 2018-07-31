@@ -18,7 +18,16 @@ class PrintOrder
     private $id;
 
     /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload the 3D design as a STL file.")
+     * @Assert\File(mimeTypes={ "application/vnd.ms-pkistl", "application/octet-stream" }, maxSize="50M")
+     */
+    private $design;
+
+    /**
      * @ORM\Column(type="string", length=200)
+     *
      * @Assert\NotBlank()
      * @Assert\Length(min=5, max=254)
      */
@@ -26,6 +35,7 @@ class PrintOrder
 
     /**
      * @ORM\Column(type="string", length=7)
+     *
      * @Assert\NotBlank()
      * @Assert\Length(min=7, max=7)
      */
@@ -42,12 +52,14 @@ class PrintOrder
 
     /**
      * @ORM\Column(type="decimal")
+     *
      * @Assert\NotBlank()
      */
     private $width;
 
     /**
      * @ORM\Column(type="decimal")
+     *
      * @Assert\NotBlank()
      */
     private $height;
@@ -69,6 +81,22 @@ class PrintOrder
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDesign()
+    {
+        return $this->design;
+    }
+
+    /**
+     * @param string $design
+     */
+    public function setDesign($design): void
+    {
+        $this->design = $design;
     }
 
     /**
