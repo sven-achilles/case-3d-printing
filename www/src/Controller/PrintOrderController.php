@@ -15,7 +15,14 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 class PrintOrderController extends AbstractController
 {
+    /**
+     * @var PrintOrderRepository
+     */
     private $orderRepository;
+
+    /**
+     * @var EntityManagerInterface
+     */
     private $entityManager;
 
     /**
@@ -32,6 +39,8 @@ class PrintOrderController extends AbstractController
 
     /**
      * @Route("/", name="print_order_index")
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function index()
     {
@@ -44,8 +53,9 @@ class PrintOrderController extends AbstractController
 
     /**
      * @Route("/create", name="print_order_create")
+     *
      * @param Request $request
-     * @return mixed
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function create( Request $request )
     {
@@ -69,5 +79,35 @@ class PrintOrderController extends AbstractController
         return $this->render( 'print-orders/add.html.twig', [
             'form' => $form->createView()
         ] );
+    }
+
+    /**
+     * @Route("/edit/{id}", name="print_order_edit")
+     *
+     * @param PrintOrder $print
+     */
+    public function edit( PrintOrder $print )
+    {
+        $this->denyAccessUnlessGranted( 'edit', $print );
+
+        // do stuff
+    }
+
+    /**
+     * @Route("/delete/{id}", name="print_order_delete")
+     *
+     * @param PrintOrder $print
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function delete( PrintOrder $print )
+    {
+        $this->denyAccessUnlessGranted( 'delete', $print );
+
+        $this->entityManager->remove( $print );
+        $this->entityManager->flush();
+
+        $this->addFlash('notice', 'Print was successfully deleted');
+
+        return $this->redirectToRoute('micro_post_index' );
     }
 }

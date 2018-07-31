@@ -49,14 +49,14 @@
             <td>Steel</td>
             <td>Gold</td>
             <td>{{ order.polish ? 'YES' : 'NO' }}</td>
-            <td>Aug 12, 2018</td>
+            <td>{{ order.createDate | date('d-m-Y') }}</td>
             <td>
                 {% if is_granted('delete', order) %}
-                    <a href="#">Delete</a>
+                    <a href="{{ path('print_order_delete', { id: order.id }) }}" title="Delete print design">Delete</a>
                 {% endif %}
 
                 {% if is_granted('edit', order) %}
-                    <a href="#">Edit</a>
+                    <a href="{{ path('print_order_edit', { id: order.id }) }}" title="Edit print design">Edit</a>
                 {% endif %}
             </td>
         </tr>

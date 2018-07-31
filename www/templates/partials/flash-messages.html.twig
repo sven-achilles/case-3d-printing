@@ -1,0 +1,17 @@
+<div id="flash-messages">
+    {% for message in app.flashes('notice') %}
+        {{ include('/partials/flash-message.html.twig', { type: 'primary' }) }}
+    {% endfor %}
+
+    {% for message in app.flashes('alert') %}
+        {{ include('/partials/flash-message.html.twig', { type: 'danger' }) }}
+    {% endfor %}
+
+    {% for message in app.flashes('warning') %}
+        {{ include('/partials/flash-message.html.twig', { type: 'warning' }) }}
+    {% endfor %}
+
+    {% for message in app.flashes('success') %}
+        {{ include('/partials/flash-message.html.twig', { type: 'success' }) }}
+    {% endfor %}
+</div>

@@ -17,6 +17,8 @@
         {{ include('partials/header.html.twig') }}
 
         <div class="container">
+            {{ include('/partials/flash-messages.html.twig') }}
+
             {% block body %}
             {% endblock %}
         </div>
