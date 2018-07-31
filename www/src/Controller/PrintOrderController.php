@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\PrintOrder;
 use App\Form\PrintOrderType;
 use App\Repository\PrintOrderRepository;
+use App\Service\DesignUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
@@ -58,7 +59,7 @@ class PrintOrderController extends AbstractController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function create( Request $request )
+    public function create( Request $request, DesignUploader $designUploader )
     {
         $print = new PrintOrder();
 
@@ -70,18 +71,7 @@ class PrintOrderController extends AbstractController
         {
             $print->setCreateDate( new \DateTime() );
             $print->setUser( $this->getUser() );
-
-            $design   = $print->getDesign();
-            $fileName = $this->generateUniqueFileName() . '.stl';
-
-            // TODO: STL file validation
-
-            $design->move(
-                $this->getParameter('designs_directory'),
-                $fileName
-            );
-
-            $print->setDesign( $fileName );
+            $print->setDesign( $designUploader->upload( $print->getDesign(), 'stl' ) );
 
             $this->entityManager->persist( $print );
             $this->entityManager->flush();
@@ -107,7 +97,7 @@ class PrintOrderController extends AbstractController
     {
         $this->denyAccessUnlessGranted( 'edit', $print );
 
-        // convert design filename into File object for Form object
+        // convert design filename into File object to populate init value *not working*
         $print->setDesign( new File( $this->getParameter('designs_directory') . '/' . $print->getDesign() ) );
 
         $form = $this->createForm( PrintOrderType::class, $print );
@@ -144,13 +134,5 @@ class PrintOrderController extends AbstractController
         $this->addFlash('notice', 'Print was successfully deleted');
 
         return $this->redirectToRoute('micro_post_index' );
-    }
-
-    /**
-     * @return string
-     */
-    private function generateUniqueFileName()
-    {
-        return md5( uniqid() );
     }
 }

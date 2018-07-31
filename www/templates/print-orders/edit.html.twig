@@ -10,6 +10,21 @@
     <h2 id="page-title">Edit 3D design</h2>
 
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+    {{ form_row(form.title) }}
+    {{ form_row(form.color) }}
+    {{ form_row(form.polish) }}
+    {{ form_row(form.width) }}
+    {{ form_row(form.height) }}
+
+    <div>
+        <a href="#">Upload new 3D file</a>
+
+        <div class="upload-form">
+            {{ form_label(form.design) }}
+            {{ form_widget(form.design, { 'attr': { 'class': 'foo' } }) }}
+        </div>
+    </div>
+
     {{ form_end(form) }}
 {% endblock %}

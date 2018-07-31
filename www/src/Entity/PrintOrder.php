@@ -84,7 +84,7 @@ class PrintOrder
     }
 
     /**
-     * @return string
+     * @return string|\Symfony\Component\HttpFoundation\File\UploadedFile
      */
     public function getDesign()
     {
