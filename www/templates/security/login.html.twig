@@ -4,9 +4,7 @@
 
 {% block body %}
     {% if error %}
-        <div class="error alert-danger">
-            {{ error.messageKey | trans(error.MessageData, 'security') }}
-        </div>
+        {{ include('partials/flash-message.html.twig', { type: 'danger', message: 'Invalid credentials' }) }}
     {% endif %}
 
     <form action="{{ path('security_login') }}" method="POST">
