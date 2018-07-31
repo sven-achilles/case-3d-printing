@@ -62,8 +62,7 @@ class PrintOrderController extends AbstractController
     public function create( Request $request, DesignUploader $designUploader )
     {
         $print = new PrintOrder();
-
-        $form = $this->createForm( PrintOrderType::class, $print );
+        $form  = $this->createForm( PrintOrderType::class, $print, [ 'validation_groups' => 'creation'] );
 
         $form->handleRequest( $request );
 
@@ -101,10 +100,12 @@ class PrintOrderController extends AbstractController
         $print->setDesign( new File( $this->getParameter('designs_directory') . '/' . $print->getDesign() ) );
 
         $form = $this->createForm( PrintOrderType::class, $print );
+
         $form->handleRequest( $request );
 
         if( $form->isSubmitted() && $form->isValid() )
         {
+            die('here bro!');
             $this->entityManager->persist( $print );
             $this->entityManager->flush();
 

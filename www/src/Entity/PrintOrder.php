@@ -20,8 +20,8 @@ class PrintOrder
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\NotBlank(message="Please, upload the 3D design as a STL file.")
-     * @Assert\File(mimeTypes={ "application/vnd.ms-pkistl", "application/octet-stream" }, maxSize="50M")
+     * @Assert\NotBlank(message="Please, upload the 3D design as a STL file.", groups={ "creation" })
+     * @Assert\File(mimeTypes={ "application/vnd.ms-pkistl", "application/octet-stream" }, maxSize="50M", groups={ "creation" })
      */
     private $design;
 

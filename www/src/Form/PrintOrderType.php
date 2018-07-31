@@ -25,7 +25,8 @@ class PrintOrderType extends AbstractType
                     'required' => false,
                 ])
                 ->add('design', FileType::class, [
-                    'label' => '3D Design (STL file, 50MB max)'
+                    'label' => '3D Design (STL file, 50MB max)',
+                    'required' => false
                 ])
                 ->add('width', RangeType::class, [
                     'attr' => [
