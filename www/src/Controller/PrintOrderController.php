@@ -85,12 +85,29 @@ class PrintOrderController extends AbstractController
      * @Route("/edit/{id}", name="print_order_edit")
      *
      * @param PrintOrder $print
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit( PrintOrder $print )
+    public function edit( PrintOrder $print, Request $request )
     {
         $this->denyAccessUnlessGranted( 'edit', $print );
 
-        // do stuff
+        $form = $this->createForm( PrintOrderType::class, $print );
+        $form->handleRequest( $request );
+
+        if( $form->isSubmitted() && $form->isValid() )
+        {
+            $this->entityManager->persist( $print );
+            $this->entityManager->flush();
+
+            $this->addFlash('success', 'Print was successfully changed');
+
+            return $this->redirectToRoute( 'print_order_index' );
+        }
+
+        return $this->render( 'print-orders/edit.html.twig', [
+            'form' => $form->createView()
+        ] );
     }
 
     /**

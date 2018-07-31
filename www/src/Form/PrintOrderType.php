@@ -37,7 +37,7 @@ class PrintOrderType extends AbstractType
                         'data-postfix' => 'mm'
                     ]
                 ])
-                ->add('Upload design', SubmitType::class);
+                ->add('Save', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
