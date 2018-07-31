@@ -3,6 +3,7 @@
 {% block title %}3D prints overview{% endblock %}
 
 {% block stylesheets %}
+    <link rel="stylesheet" href="/css/color-box.css">
     <link rel="stylesheet" href="/css/print-orders.css">
 {% endblock %}
 
@@ -45,9 +46,7 @@
                 <td>{{ order.width }}mm x {{ order.height }}mm</td>
                 <td>{{ order.material | capitalize }}</td>
                 <td>{{ order.finish | capitalize }}</td>
-                <td>
-                    <div class="color-box" style="background-color: {{ order.color }};"></div>
-                </td>
+                <td>{{ include('partials/color-box.html.twig', { color: order.color }) }}</td>
                 <td>{{ order.polish ? 'YES' : 'NO' }}</td>
                 <td>{{ order.createDate | date('d-m-Y') }}</td>
 

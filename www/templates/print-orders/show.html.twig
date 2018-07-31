@@ -3,6 +3,7 @@
 {% block title %}{{ print.title }} | 3D design{% endblock %}
 
 {% block stylesheets %}
+    <link rel="stylesheet" href="/css/color-box.css">
     <link rel="stylesheet" href="/css/show-print.css">
 {% endblock %}
 
@@ -33,7 +34,7 @@
                             <b>Color</b>
                         </td>
                         <td>
-                            {{ print.color | upper }}
+                            {{ include('partials/color-box.html.twig', { color: print.color }) }} {{ print.color | upper }}
                         </td>
                     </tr>
 
