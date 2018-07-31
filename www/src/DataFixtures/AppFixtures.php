@@ -5,13 +5,33 @@ use App\Entity\PrintOrder;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Faker\Factory as Faker;
 
-class AppFixtures extends Fixture
+class AppFixtures extends Fixture implements ContainerAwareInterface
 {
     private $faker;
     private $passwordEncoder;
+    private $container;
+
+    const MATERIALS = [
+        PrintOrder::MATERIAL_SAND_STONE,
+        PrintOrder::MATERIAL_ALUMINUM,
+        PrintOrder::MATERIAL_FINE_PLASTIC,
+        PrintOrder::MATERIAL_PLASTIC
+    ];
+
+    const FINISH = [
+        PrintOrder::FINISH_NONE,
+        PrintOrder::FINISH_BRASS,
+        PrintOrder::FINISH_BRONZE,
+        PrintOrder::FINISH_GOLD,
+        PrintOrder::FINISH_SILVER,
+        PrintOrder::FINISH_PLATINUM,
+        PrintOrder::FINISH_PLASTIC
+    ];
 
     private const USERS = [
         [
@@ -31,6 +51,7 @@ class AppFixtures extends Fixture
     {
         $users = $this->getDummyUsersData();
 
+        $this->cleanDesignsUploadFolder();
         $this->loadUsers( $manager, $users );
         $this->loadPrintOrders( $manager, $users );
     }
@@ -62,6 +83,8 @@ class AppFixtures extends Fixture
 
             $order->setTitle( substr( $this->faker->sentence(rand(2, 3)), 0, -1) );
             $order->setColor( $this->faker->hexcolor, 1 );
+            $order->setMaterial( self::MATERIALS[ count(self::MATERIALS) - 1 ] );
+            $order->setMaterial( self::FINISH[ count(self::FINISH) - 1 ] );
             $order->setPolish( rand(0, 1) );
             $order->setWidth( rand(50, 500) );
             $order->setHeight( rand(50, 500) );
@@ -92,5 +115,31 @@ class AppFixtures extends Fixture
 
     private function convertToReferenceName( $name ) {
         return preg_replace('/\s+|\.+/', '-', strtolower( $name ) );
+    }
+
+    private function cleanDesignsUploadFolder()
+    {
+        $files = glob($this->container->getParameter('designs_directory') . "/*.stl");
+
+        foreach( $files as $file )
+        {
+            if( is_file( $file ) )
+            {
+                @unlink($file);
+            }
+        }
+    }
+
+    private function copyDummy3DFiles()
+    {
+    
+    }
+
+    /**
+     * @param ContainerInterface|null $container
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
     }
 }
