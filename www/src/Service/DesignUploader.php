@@ -1,6 +1,7 @@
 <?php
 namespace App\Service;
 
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DesignUploader
@@ -19,11 +20,11 @@ class DesignUploader
     }
 
     /**
-     * @param UploadedFile $design
+     * @param File|UploadedFile $design
      * @param null|string $extension
      * @return string
      */
-    public function upload( UploadedFile $design, $extension = null )
+    public function upload( File $design, $extension = null )
     {
         if( is_null( $extension ) ) {
             $extension = $design->guessExtension();
