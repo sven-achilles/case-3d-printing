@@ -39,7 +39,7 @@ class PrintOrderType extends AbstractType
                         'Brass'    => PrintOrder::FINISH_BRASS,
                     ]
                 ])
-            ->add('color', ColorType::class)
+                ->add('color', ColorType::class)
                 ->add('polish', CheckboxType::class, [
                     'required' => false,
                 ])

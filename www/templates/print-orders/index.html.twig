@@ -24,10 +24,6 @@
     <table class="table table-bordered" id="print-orders">
         <thead>
         <tr>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <th scope="col"></th>
-            {% endif %}
-
             <th scope="col">Title</th>
             <th scope="col">Dimensions</th>
             <th scope="col">Color</th>
@@ -45,21 +41,13 @@
         <tbody>
         {% for order in orders %}
             <tr {{ (app.user and order.user.getId() is same as(app.user.getId()) ? 'class="mine"' : '') }} data-show-url="{{ path('print_order_show', { id: order.id }) }}">
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <td scope="row">
-                        {% if is_granted('delete', order) %}
-                            <input type="checkbox">
-                        {% endif %}
-                    </td>
-                {% endif %}
-
                 <td>{{ order.title }}</td>
                 <td>{{ order.width }}mm x {{ order.height }}mm</td>
+                <td>{{ order.material | capitalize }}</td>
+                <td>{{ order.finish | capitalize }}</td>
                 <td>
                     <div class="color-box" style="background-color: {{ order.color }};"></div>
                 </td>
-                <td>Steel</td>
-                <td>Gold</td>
                 <td>{{ order.polish ? 'YES' : 'NO' }}</td>
                 <td>{{ order.createDate | date('d-m-Y') }}</td>
 
@@ -78,6 +66,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="del">Delete selected prints</a>
 {% endblock %}

@@ -137,7 +137,7 @@ class AppFixtures extends Fixture implements ContainerAwareInterface
      */
     private function getDummyDesign()
     {
-        $dummy_design     = $this->container->getParameter('dummy_designs_directory') . '/' . self::STL_FILES[ count(self::STL_FILES) - 1 ] . '.stl';
+        $dummy_design     = $this->container->getParameter('dummy_designs_directory') . '/' . self::STL_FILES[ rand( 0, count(self::STL_FILES) - 1 ) ] . '.stl';
         $dummy_design_tmp = $dummy_design . '.tmp';
 
         copy( $dummy_design, $dummy_design_tmp );
