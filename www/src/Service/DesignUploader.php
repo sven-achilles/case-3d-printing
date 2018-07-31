@@ -29,6 +29,8 @@ class DesignUploader
             $extension = $design->guessExtension();
         }
 
+        // TODO: do more validation tests on the design file..
+
         $fileName = self::getUniqueFileName( $extension );
 
         $design->move(

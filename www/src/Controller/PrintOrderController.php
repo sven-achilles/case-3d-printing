@@ -92,20 +92,28 @@ class PrintOrderController extends AbstractController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit( PrintOrder $print, Request $request )
+    public function edit( PrintOrder $print, Request $request, DesignUploader $designUploader )
     {
         $this->denyAccessUnlessGranted( 'edit', $print );
 
-        // convert design filename into File object to populate init value *not working*
-        $print->setDesign( new File( $this->getParameter('designs_directory') . '/' . $print->getDesign() ) );
+        $old_design_filename = $print->getDesign();
+        // convert design filename into File object to populate init value
+        $print->setDesign( new File( $this->getParameter('designs_directory') . '/' . $old_design_filename ) );
 
         $form = $this->createForm( PrintOrderType::class, $print );
-
         $form->handleRequest( $request );
 
         if( $form->isSubmitted() && $form->isValid() )
         {
-            die('here bro!');
+            if( !is_null( $print->getDesign() ) )
+            {
+                $print->setDesign( $designUploader->upload( $print->getDesign(), 'stl' ) );
+            }
+            else
+            {
+                $print->setDesign( $old_design_filename );
+            }
+
             $this->entityManager->persist( $print );
             $this->entityManager->flush();
 
