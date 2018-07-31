@@ -2,8 +2,13 @@
 
 {% block title %}Edit 3D design{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="/css/design-upload-toggle.css">
+{% endblock %}
+
 {% block javascripts %}
     <script src="/js/form-range.js"></script>
+    <script src="/js/design-upload-toggle.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -17,12 +22,15 @@
     {{ form_row(form.width) }}
     {{ form_row(form.height) }}
 
-    <div>
-        <a href="#">Upload new 3D file</a>
+    <div id="upload-new-file">
+        <div class="form-group">
+            <button type="button" class="btn btn-secondary btn-sm new">Upload new 3D file</button>
+            <button type="button" class="btn btn-secondary btn-sm keep hide">Keep old 3D file</button>
 
-        <div class="upload-form">
-            {{ form_label(form.design) }}
-            {{ form_widget(form.design) }}
+            <div class="upload-form hide">
+                {{ form_label(form.design) }}
+                {{ form_widget(form.design) }}
+            </div>
         </div>
     </div>
 
