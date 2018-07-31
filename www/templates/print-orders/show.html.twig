@@ -39,19 +39,28 @@
 
                     <tr>
                         <td>
-                            <b>Width</b>
+                            <b>Dimension</b>
                         </td>
                         <td>
-                            {{ print.width }}mm
+                            {{ print.width }}mm x {{ print.height }}mm
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <b>Height</b>
+                            <b>Material</b>
                         </td>
                         <td>
-                            {{ print.height }}mm
+                            {{ print.material | capitalize }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <b>Finish</b>
+                        </td>
+                        <td>
+                            {{ print.finish | capitalize }}
                         </td>
                     </tr>
 

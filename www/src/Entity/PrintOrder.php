@@ -10,10 +10,25 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class PrintOrder
 {
+    const MATERIAL_PLASTIC      = 'plastic';
+    const MATERIAL_FINE_PLASTIC = 'fine plastic';
+    const MATERIAL_ALUMINUM     = 'aluminum';
+    const MATERIAL_SAND_STONE   = 'sand stone';
+
+    const FINISH_NONE     = 'none';
+    const FINISH_PLASTIC  = 'plastic';
+    const FINISH_PLATINUM = 'platinum';
+    const FINISH_GOLD     = 'gold';
+    const FINISH_SILVER   = 'silver';
+    const FINISH_BRASS    = 'brass';
+    const FINISH_BRONZE   = 'bronze';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @var int
      */
     private $id;
 
@@ -22,6 +37,8 @@ class PrintOrder
      *
      * @Assert\NotBlank(message="Please, upload the 3D design as a STL file.", groups={ "creation" })
      * @Assert\File(mimeTypes={ "application/vnd.ms-pkistl", "application/octet-stream" }, maxSize="50M", groups={ "creation" })
+     *
+     * @var string
      */
     private $design;
 
@@ -30,6 +47,8 @@ class PrintOrder
      *
      * @Assert\NotBlank()
      * @Assert\Length(min=5, max=254)
+     *
+     * @var string
      */
     private $title;
 
@@ -38,15 +57,33 @@ class PrintOrder
      *
      * @Assert\NotBlank()
      * @Assert\Length(min=7, max=7)
+     *
+     * @var string
      */
     private $color;
 
-    //private $material;
+    /**
+     * @ORM\Column(type="string", length=25)
+     *
+     * @Assert\NotBlank()
+     *
+     * @var string
+     */
+    private $material;
 
-    //private $finish;
+    /**
+     * @ORM\Column(type="string", length=25)
+     *
+     * @Assert\NotBlank()
+     *
+     * @var string
+     */
+    private $finish;
 
     /**
      * @ORM\Column(type="boolean")
+     *
+     * @var boolean
      */
     private $polish;
 
@@ -54,6 +91,8 @@ class PrintOrder
      * @ORM\Column(type="decimal")
      *
      * @Assert\NotBlank()
+     *
+     * @var double
      */
     private $width;
 
@@ -61,17 +100,23 @@ class PrintOrder
      * @ORM\Column(type="decimal")
      *
      * @Assert\NotBlank()
+     *
+     * @var double
      */
     private $height;
 
     /**
      * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
      */
     private $createDate;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="prints")
      * @ORM\JoinColumn()
+     *
+     * @var \App\Entity\User
      */
     private $user;
 
@@ -177,6 +222,38 @@ class PrintOrder
     public function setHeight($height): void
     {
         $this->height = $height;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMaterial()
+    {
+        return $this->material;
+    }
+
+    /**
+     * @param string $material
+     */
+    public function setMaterial($material): void
+    {
+        $this->material = $material;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFinish()
+    {
+        return $this->finish;
+    }
+
+    /**
+     * @param string $finish
+     */
+    public function setFinish($finish): void
+    {
+        $this->finish = $finish;
     }
 
     /**
