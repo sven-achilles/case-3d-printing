@@ -40,7 +40,7 @@ Docker-Compose v1.22
 
 ### Installing
 
-Follow the steps to setup and run the study case on your local machine.
+Follow the steps to setup and run the case study on your local machine.
 
 **Step 1** Clone the project through Git onto your machine
 
