@@ -15,7 +15,7 @@ RUN apt-get update && apt-get -y install \
 	zlib1g-dev \
 	vim
 
-RUN docker-php-ext-install curl intl json mbstring pdo pdo_pgsql pdo_mysql mysqli xml \
+RUN docker-php-ext-install curl intl json mbstring pdo pdo_pgsql pdo_mysql mysqli xml zip \
 	&& apt-get autoremove && apt-get autoclean \
 	&& rm -rf /var/lib/apt/lists/*
 
