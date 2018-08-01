@@ -102,7 +102,7 @@
                     {% endif %}
 
                     {% if is_granted('delete', print) %}
-                        <a href="{{ path('print_order_delete', { id: print.id }) }}" class="btn btn-danger" title="Delete 3D print">Delete</a>
+                        <a href="{{ path('print_order_delete', { id: print.id }) }}" onclick="javascript:confirm('Are you sure?')" class="btn btn-danger" title="Delete 3D print">Delete</a>
                     {% endif %}
                 </div>
             </div>

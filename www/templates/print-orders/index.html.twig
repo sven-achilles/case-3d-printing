@@ -53,7 +53,7 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <td>
                         {% if is_granted('delete', order) %}
-                            <a href="{{ path('print_order_delete', { id: order.id }) }}" title="Delete print design">Delete</a>
+                            <a href="{{ path('print_order_delete', { id: order.id }) }}" onclick="javascript:confirm('Are you sure?')" title="Delete print design">Delete</a>
                         {% endif %}
 
                         {% if is_granted('edit', order) %}
