@@ -16,7 +16,7 @@ class DesignUploaderTest extends TestCase
      */
     public function testUniqueFileNameGenerator( $extension )
     {
-        $filename  = DesignUploader::getUniqueFileName( $extension );
+        $filename = DesignUploader::getUniqueFileName( $extension );
 
         $this->assertEquals( 32 + strlen( $extension ) + 1, strlen($filename) );
         $this->assertTrue( !preg_match('/[A-Z]+[a-z]+[0-9]+\.' . $extension . '/', $filename) );

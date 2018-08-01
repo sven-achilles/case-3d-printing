@@ -22,7 +22,7 @@ A case study to demonstrate knowledge about Symfony4 and PHP. The following user
 ## Context
 The case study didn't had a real context aside 3D printing so I had to made up my own. 
 
-The app is about a 3D printing design sgaring platform. Users can upload their 3D print design so that other users can use these in their own projects.
+The app is about a 3D printing design sharing platform. Users can upload their 3D print design so that other users can use these in their own projects.
 
 ## Getting Started
 
@@ -48,7 +48,7 @@ Follow the steps to setup and run the case study on your local machine.
 $ git clone git@github.com:sven-achilles/case-3d-printing.git <destination folder>
 ```
 
-**Step 2** Create the Docker .env file and fillin details.
+**Step 2** Create the Docker .env file and fillin the details.
 
 ```
 $ cd docker
