@@ -18,37 +18,51 @@ class User implements UserInterface, \Serializable
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     *
+     * @var int
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=254, unique=true)
+     *
      * @Assert\NotBlank()
      * @Assert\Length(min=5, max=254)
      * @Assert\Email()
+     *
+     * @var string
      */
     private $email;
 
     /**
      * @ORM\Column(type="string")
+     *
+     * @var string
      */
     private $password;
 
     /**
      * @Assert\NotBlank()
      * @Assert\Length(min=5, max=4096)
+     *
+     * @var string
      */
     private $plainPassword;
 
     /**
      * @ORM\Column(type="string", length=50)
+     *
      * @Assert\NotBlank()
      * @Assert\Length(min=5, max=50)
+     *
+     * @var string
      */
     private $fullName;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\PrintOrder", mappedBy="user")
+     *
+     * @var ArrayCollection
      */
     private $prints;
 
